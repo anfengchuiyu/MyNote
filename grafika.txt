@@ -1,0 +1,13 @@
+EglCore
+WindowSurface
+SurfaceTexture
+
+1.PlayMovieActivity
+2.ContinuousCaptureActivity
+
+
+
+MoviePlayer:
+    MediaExtractor
+    MediaCodec
+    Surface
