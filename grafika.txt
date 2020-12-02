@@ -1,3 +1,18 @@
+----- opengl_es/EGL blogs:
+
+OpenGL ES: (3) EGL、EGL绘图的基本步骤、EGLSurface、ANativeWindow
+https://www.cnblogs.com/yongdaimi/p/11244950.html
+
+http://geekfaner.com/shineengine/index.html
+
+
+
+
+
+
+
+
+
 EglCore
 WindowSurface
 SurfaceTexture
