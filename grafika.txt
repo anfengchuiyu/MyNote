@@ -3,14 +3,30 @@
 OpenGL ES: (3) EGL、EGL绘图的基本步骤、EGLSurface、ANativeWindow
 https://www.cnblogs.com/yongdaimi/p/11244950.html
 
+OpenGL ES 2.0 知识串讲
 http://geekfaner.com/shineengine/index.html
+https://blog.csdn.net/a2923790861/article/details/103936801
 
 
 
 
 
+## EGL理解
+EGL 是 OpenGL ES 渲染 API 和本地窗口系统(native platform window system)之间的一个中间接口层，它主要由系统制造商实现。
 
+EGLDisplay —— 系统显示 ID 或句柄，可以理解为一个前端的显示窗口
 
+EGLSurface —— 系统窗口或 frame buffer 句柄 ，可以理解为一个后端的渲染目标窗口
+
+EGLContext —— OpenGL ES 图形上下文，它代表了OpenGL状态机；如果没有它，OpenGL指令就没有执行的环境。
+
+eglMakeCurrent -- 这个函数的功能是用于 enable surface 和 context,也就是将一个指定的 context绑定到当前的绘制thread上,
+与读、写的surface关联上。make current 之后,就可以调用 OpenGL ES 的 API 对 context 中的状态集进行设定,
+然后进而往 surface 中绘制内容,再从 surface 中把内容读取出来。
+
+eglSwapBuffers -- 当 OpenGL ES 把内容绘制到 surface 上之后,可以通过这个函数,把 surface 中 color buffer 的内容显示出来。
+我们还记得 surface 中可能有 color buffer、depth buffer、stencil buffer,而被展示的只是 color buffer。
+也就是通过这个函数,让我们看到了手机上不停变换显示的图片。
 
 
 EglCore
@@ -19,7 +35,7 @@ SurfaceTexture
 
 1.PlayMovieActivity
 2.ContinuousCaptureActivity
-
+演示捕获视频到环形缓冲区。当点击“捕捉”按钮时，缓存的视频被保存
 
 
 MoviePlayer:
