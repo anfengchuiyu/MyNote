@@ -1,2 +1,5 @@
 Android ANR分析详解
 https://www.jianshu.com/p/d19c34e7e9bd
+
+ANR问题分析指北
+http://www.voidcn.com/article/p-dfpaosyh-bhh.html
