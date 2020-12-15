@@ -1,0 +1,2 @@
+Android ANR分析详解
+https://www.jianshu.com/p/d19c34e7e9bd

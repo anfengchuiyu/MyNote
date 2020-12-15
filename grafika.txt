@@ -33,9 +33,46 @@ EglCore
 WindowSurface
 SurfaceTexture
 
+
+##########MeidaCodec Start
+
+MediaCodec的使用场景是：当你的项目需要用加密的协议来传输视频流，或者需要和视频裸流打交道的时候。
+
+MediaCodec codec = MediaCodec.createByCodecName(name);
+codec.configure(format, …);
+MediaFormat outputFormat = codec.getOutputFormat();
+codec.start();
+for (;;) {
+  int inputBufferId = codec.dequeueInputBuffer(timeoutUs);
+  if (inputBufferId >= 0) {
+    ByteBuffer inputBuffer = codec.getInputBuffer(…);
+    // fill inputBuffer with valid data
+    …
+    codec.queueInputBuffer(inputBufferId, …);
+  }
+  int outputBufferId = codec.dequeueOutputBuffer(…);
+  if (outputBufferId >= 0) {
+    ByteBuffer outputBuffer = codec.getOutputBuffer(outputBufferId);
+    MediaFormat bufferFormat = codec.getOutputFormat(outputBufferId); // option A
+    // bufferFormat is identical to outputFormat
+    // outputBuffer is ready to be processed or rendered.
+    …
+    codec.releaseOutputBuffer(outputBufferId, …);
+  } else if (outputBufferId == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+    // Subsequent data will conform to new format.
+    // Can ignore if using getOutputFormat(outputBufferId)
+    outputFormat = codec.getOutputFormat(); // option B
+  }
+ }
+ codec.stop();
+ codec.release();
+
+##########MeidaCodec End
+
 1.PlayMovieActivity
 2.ContinuousCaptureActivity
 演示捕获视频到环形缓冲区。当点击“捕捉”按钮时，缓存的视频被保存
+
 
 
 MoviePlayer:
