@@ -1,10 +1,111 @@
+
+##-----------------ANR问题---------------------------------------------
+
 Android ANR分析详解
 https://www.jianshu.com/p/d19c34e7e9bd
 
 ANR问题分析指北
 http://www.voidcn.com/article/p-dfpaosyh-bhh.html
 
+
+
+
+
+##-----------------Git常用命令--------------------------------------
+工作区：我们直接编辑的地方，肉眼可见，直接操作
+暂存区：数据暂时存放的区域, git add会把数据添加到此
+版本库：存放已经提交的数据，push的时候把这个区的数据push到远程仓库
+
+//查看远程仓库地址
+git remote -v
+
+//修改最近一条的commit msg
+git commit --amend
+
+//修改最近一条的author
+git commit --amend --author="zhe <1161280544@qq.com>"
+
+
+撤销commit:
+git reset HEAD^           //撤销最近的一条，清空暂存区，只保留改动到工作区
+git reset --hard HEAD^    //撤销最近的一条，改动都丢弃
+git reset --soft HEAD^    //撤销最近的一条，不清空暂存区
+git reset [commit_id]     //撤销到某一次提交
+
+
+git stash save "save message"    //保存到stash
+git stash list                   //罗列出所有stash
+git stash show                   //默认显示第一个stash
+git stash show stash@{1}         //显示第二个
+
+//创建这个commit的patch
+git format-patch -1 4e16
+
+//创建这个提交后的所有patch
+git format-patch 4e16
+
+
+
+
+##---------------grep搜索命令----------------------------------------------
+
+grep "name" main.log
+
+//多条件搜索 -E
+grep "name1|name2" main.log -E
+
+//忽略大小写 -i
+
+//遍历目录下所有文件包括子目录 -r
+grep "name" ./ -r
+
+//-E -i -r 组合
+grep "name1|name2" ./ -irE
+
+
+
+
+##------------------adb常用命令------------------------------------------------------
+
+//查看当前的Activity
+adb shell dumpsys activity activities | grep "mResumedActivity"
+
+//windows下搜索Android logcat日志
+adb logcat | findstr "name"
+
+//清空日志缓存
+logcat -c
+
+
+##==================Vim常用命令=========================================
+
+滚动屏幕：
+ctrl + b   //向上滚动一屏
+ctrl + f   //向下滚动一屏
+
+
+搜索：
+:/搜索内容  //搜索文件的内容
+n   //下一个
+N   //上一个
+
+
+复制粘贴：
+"+y    //粘贴到系统剪贴板
+y      //复制一行
+p      //粘贴一行
+dd     //删除一行
+u      //撤销更改
+
+
+
+
+
+
+
+
 ##-------------CmakeLists编写--------------------------------
+
 https://blog.csdn.net/afei__/article/details/81201039
 
 
