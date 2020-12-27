@@ -184,9 +184,149 @@ CMAKE_C_FLAGS：设置 C 编译选项，也可以通过指令 add_definitions() 
 CMAKE_CXX_FLAGS：设置 C++ 编译选项，也可以通过指令 add_definitions() 添加
 
 
+##----------------Centos7 nginx安装配置---------------------------------------------------
+
+
+//centos 7 查看IP地址
+ip addr
+
+
+//linux和xshell文件传输
+1.先安装lrzsz
+yum install lrzsz
+
+2.在xshell上执行
+rz        //上传文件到linux
+sz [file]   //下载文件到windows
+
+
+基于nginx的rtmp直播服务器（nginx-rtmp-module实现）
+https://www.cnblogs.com/zhangmingda/p/12638985.html
+
+
+一. gcc 安装
+安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：
+
+yum install gcc-c++
+
+二. PCRE pcre-devel 安装
+PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。命令：
+
+yum install -y pcre pcre-devel
+
+三. zlib 安装
+zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。
+
+yum install -y zlib zlib-devel
+
+四. OpenSSL 安装
+OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。
+nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。
+
+yum install -y openssl openssl-devel
+
+
+官网下载
+1.直接下载.tar.gz安装包，地址：https://nginx.org/en/download.html
+
+2.使用wget命令下载（推荐）。确保系统已经安装了wget，如果没有安装，执行 yum install wget 安装。
+比如执行：
+wget -c https://nginx.org/download/nginx-1.12.0.tar.gz
+
+3.解压
+依然是直接命令：
+
+tar -zxvf nginx-1.12.0.tar.gz
+cd nginx-1.12.0
+
+
+4.配置
+其实在 nginx-1.12.0 版本中你就不需要去配置相关东西，默认就可以了。当然，如果你要自己配置目录也是可以的。
+1.使用默认配置
+
+./configure
+
+5.编译安装
+make
+make install
+
+6.查找安装路径：
+
+whereis nginx
+
+
+7.启动、停止nginx
+cd /usr/local/nginx/sbin/
+
+/usr/local/nginx/sbin/nginx
+/usr/local/nginx/sbin/nginx -s stop
+/usr/local/nginx/sbin/nginx -s quit
+/usr/local/nginx/sbin/nginx -s reload
+
+./nginx -s quit:此方式停止步骤是待nginx进程处理任务完毕进行停止。
+./nginx -s stop:此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。
+
+查询nginx进程：ps aux|grep nginx
+
+重启 nginx
+1.先停止再启动（推荐）：
+对 nginx 进行重启相当于先停止再启动，即先执行停止命令再执行启动命令。如下：
+
+./nginx -s quit
+./nginx
+2.重新加载配置文件：
+当 ngin x的配置文件 nginx.conf 修改后，要想让配置生效需要重启 nginx，使用-s reload不用先停止 ngin x再启动 nginx 即可将配置信息在 nginx 中生效，如下：
+./nginx -s reload
+
+
+8.开机自启动
+即在rc.local增加启动代码就可以了。
+
+vi /etc/rc.local
+增加一行 /usr/local/nginx/sbin/nginx
+设置执行权限：
+
+chmod 755 rc.local
 
 
 
+##-------------------EGL初始化-----------------------------------
+EGLDisplay：是对实际显示设备的抽象
+EGLSurface：是对用来存储图像的内存区域 FrameBuffer 的抽象，包括 Color Buffer（颜色缓冲区）， 
+			Stencil Buffer（模板缓冲区） ，Depth Buffer（深度缓冲区）
+EGLContext：存储 OpenGL ES 绘图的一些状态信息
+
+使用 EGL 渲染的一般步骤：
+1.获取 EGLDisplay 对象，建立与本地窗口系统的连接 调用 eglGetDisplay 方法得到 EGLDisplay
+
+2.初始化 EGL
+调用 eglInitialize 方法初始化
+
+3.获取 EGLConfig 对象，确定渲染表面的配置信息 调用 eglChooseConfig 方法得到 EGLConfig。
+
+4.创建渲染表面 EGLSurface
+通过 EGLDisplay 和 EGLConfig ，调用 eglCreateWindowSurface 或 eglCreatePbufferSurface 方法创建渲染表面，
+得到 EGLSurface，其中 eglCreateWindowSurface 用于创建屏幕上渲染区域，eglCreatePbufferSurface 用于创建屏幕外渲染区域。
+
+5.创建渲染上下文 EGLContext
+调用 eglCreateContext 方法创建渲染上下文，得到 EGLContext
+
+6.绑定上下文
+通过 eglMakeCurrent 方法将 EGLSurface、EGLContext、EGLDisplay 三者绑定，
+绑定成功之后 OpenGLES 环境就创建好了，接下来便可以进行渲染
+
+7.交换缓冲
+OpenGLES 绘制结束后，使用 eglSwapBuffers 方法交换前后缓冲，将绘制内容显示到屏幕上，而屏幕外的渲染不需要调用此方法
+
+8.释放 EGL 环境 
+ 绘制结束后，不再需要使用 EGL 时，需要取消 eglMakeCurrent 的绑定，销毁 EGLDisplay、EGLSurface、EGLContext 三个对象。
 
 
 
+字节流动
+https://juejin.cn/user/1556564195161725/posts
+
+Android EGL + C/C++ 编写OpenGLES程序
+https://www.jianshu.com/p/bf1cec3fdba3
+
+https://github.com/CainKernel/EGLNativeRender/blob/master/app/src/main/cpp/caingles/GlUtils.cpp
