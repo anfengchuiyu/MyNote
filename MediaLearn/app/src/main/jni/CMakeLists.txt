@@ -11,13 +11,15 @@ include_directories(
         native_looper
 )
 
-file(GLOB SRC_LIST "*.cpp" "egl/*.cpp" "native_looper/*.cpp")
+file(GLOB SRC_LIST "*.cpp" "egl/*.cpp")
 
 add_library(native SHARED ${SRC_LIST})
 
 
 target_link_libraries(
         native
+
+        -landroid
         EGL
         GLESv3
         log

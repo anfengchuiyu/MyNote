@@ -8,6 +8,7 @@
 #include <android/native_window.h>
 #include "EglCore.h"
 #include "WindowSurface.h"
+#include "Triangle.h"
 
 class GLRender {
 public:
@@ -19,11 +20,15 @@ public:
 
     void surfaceChanged(int width, int height);
 
+    void onDrawFrame();
+
     void surfaceDestroyed(void);
 
 private:
     EglCore *mEglCore;
     WindowSurface *mWindowSurface;
+
+    Triangle *triangle;
 };
 
 
