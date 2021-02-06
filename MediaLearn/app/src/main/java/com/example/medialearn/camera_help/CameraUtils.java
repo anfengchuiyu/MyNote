@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.medialearn;
+package com.example.medialearn.camera_help;
 
 import android.hardware.Camera;
 import android.util.Log;

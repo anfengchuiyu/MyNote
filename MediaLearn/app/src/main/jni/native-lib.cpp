@@ -6,6 +6,32 @@
 #include <GLRender.h>
 #include <android/native_window.h>
 #include <android/native_window_jni.h>
+#include <AndroidLogUtil.h>
+
+
+//static JavaVM *javaVm;
+
+/*extern int register_native_livepush(JNIEnv *env);
+
+jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+
+    JNIEnv *env = NULL;
+    jint result = -1;
+
+    if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK) {
+        LOGE("JNI_OnLoad GetEnv JNI_VERSION_1_6 failed");
+        goto bail;
+    }
+
+    register_native_livepush(env);
+
+    result = JNI_VERSION_1_6;
+
+    bail:
+    return result;
+
+}*/
+
 
 GLRender *glRender = new GLRender();
 //ANativeWindow *window = NULL;
@@ -13,6 +39,7 @@ GLRender *glRender = new GLRender();
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_medialearn_test_NativeTest_sayHello(JNIEnv *env, jclass clazz) {
     jstring jstr = env->NewStringUTF("hello, this is from native.");
+
     return jstr;
 }
 

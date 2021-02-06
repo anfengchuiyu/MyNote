@@ -226,6 +226,41 @@ CMAKE_C_FLAGS：设置 C 编译选项，也可以通过指令 add_definitions() 
 CMAKE_CXX_FLAGS：设置 C++ 编译选项，也可以通过指令 add_definitions() 添加
 
 
+
+
+##-------------------ubuntu nginx安装配置-------------------------------------------------
+
+1.下载
+wget -c https://nginx.org/download/nginx-1.12.0.tar.gz
+
+
+2.安装依赖库
+
+解决依赖包pcre安装，命令：
+sudo apt-get install libpcre3 libpcre3-dev
+
+安装zlib：
+sudo apt-get install zlib1g-dev
+
+openssl安装：
+sudo apt-get install openssl libssl-dev
+
+
+
+3.解压，cd进目录，执行进行默认配置
+./configure
+
+
+
+4.配置rtmp-module
+下载源码：https://github.com/arut/nginx-rtmp-module
+
+
+
+
+
+
+
 ##----------------Centos7 nginx安装配置---------------------------------------------------
 
 
@@ -331,6 +366,25 @@ vi /etc/rc.local
 chmod 755 rc.local
 
 
+##--------------------ByteBuffer---------------------------------------------
+
+
+
+
+##---------------------Camera----------------------------------------------
+
+
+
+
+
+
+##---------------------MediaCodec----------------------------------------------
+
+
+
+
+
+
 
 ##-------------------EGL初始化-----------------------------------
 EGLDisplay：是对实际显示设备的抽象
@@ -372,3 +426,224 @@ Android EGL + C/C++ 编写OpenGLES程序
 https://www.jianshu.com/p/bf1cec3fdba3
 
 https://github.com/CainKernel/EGLNativeRender/blob/master/app/src/main/cpp/caingles/GlUtils.cpp
+
+
+
+##----------------------OpenGL ES 2.0--------------------------------------------------------------------
+
+
+屏幕坐标：
+
+(-1,1)             (1,1) 
+|-------------------|
+|                   |
+|                   |
+|                   |
+|                   |
+|                   |
+|                   |
+|                   |
+|-------------------|
+(-1,-1)            (1,-1)
+
+
+
+纹理坐标：
+
+(0,1)             (1,1) 
+|-------------------|
+|                   |
+|                   |
+|                   |
+|      Texture      |
+|                   |
+|                   |
+|                   |
+|-------------------|
+(0,0)            (1,0)
+
+
+
+在android中，屏幕左上角位0,0坐标
+
+
+
+attribute
+uniform
+关于 uniform 的定义和用法,在 GLSL 语法中已经详细说过了,在这里再简单的讲几点,
+一是 uniform 是存在于 VS 和 PS 之中的,区别于 attribute 只存在与 VS 中,
+二是 uniform 针对不同的点值是一样的,区别于 attribute 针对每个点可以一样
+(比如用 glVertexAttrib*传入的时候),也可以不一样(比如用 glVertexAttribPoint)。
+
+
+
+
+
+
+###传递数据到OpenGL(GPU)
+
+-- 创建一个 buffer objec
+void glGenBuffers(GLsizei n, GLuint * buffers);
+
+`举例
+int[] vboIds = new int[1];
+glGenBuffers(1, vboIds);
+`
+
+
+-- 给 buffer object name 创建和关联一个 buffer object,同时,通过这个 API,还将参数 buffer 对应的 buffer object 设置为目前 GPU 所使用的 VBO 或者 IBO
+/**
+* traget:  VBO:GLES20.GL_ARRAY_BUFFER     IBO:GLES20.GL_ELEMENT_ARRAY_BUFFER 
+*/
+void glBindBuffer(GLenum target, GLuint buffer);
+
+`举例
+glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboIds[0]);
+`
+
+
+
+-- 创建了 buffer object 之后,就需要给这个 buffer object 赋予数据了,而 glBufferData 这个 API 就是通过 OpenGL ES,把 CPU 端保存的数据传递给 GPU 端, 保存在指定的 buffer object 中。
+/**
+* size: 数据大小
+* data：如果传null,则会分配size大小内存
+* usage： GL_STATIC_DRAW(暗示这个 buffer object 只会被赋值一次,然后在 GPU 中可能会多次读取调用)     
+		  GL_DYNAMIC_DRAW(暗示这个 buffer object 可能会被赋值多次,且在 GPU 中可能会多次读取调用)
+		  GL_STREAM_DRAW(暗示这个 buffer object 只会被赋值一次, 然后在 GPU 中也只会被读取调用少量的几次)
+*/
+void glBufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage);
+
+
+-- 这个 API 的功能和刚才的 glBufferData 类似,顾名思义,刚才那个 API 是给 buffer object 传入数据,这个 glBufferSubData 是给 buffer object 的一部分传入数据。
+void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid * data);
+
+
+-- 当 buffer 不再被需要的时候,则可以通过 glDeleteBuffers 这个 API 把 buffer object name 删除。
+void glDeleteBuffers(GLsizei n, const GLuint * buffers);
+
+
+--  给 attribute 指定 index,也可以说是指定 location
+void glBindAttribLocation(GLuint program, GLuint index, const GLchar *name);
+
+
+
+-- 获取指定 VS 中某个 attribute 的位置
+GLint glGetAttribLocation(GLuint program, const GLchar*name);
+
+
+-- 在 OpenGL ES 以及 GPU 真正使用这个 attribute 之前,还需要通过 glEnableVertexAttribArray 这个 API,对这个 attribute 进行 enable
+void glEnableVertexAttribArray(GLuint index);
+
+
+-- 当绘制结束之后,就可以把没用了的 attribute 通过 glDisableVertexAttribArray disable , 将指定 program 中 的某个 attribute 的开关关闭
+void glDisableVertexAttribArray (GLuint index);
+
+
+-- 往 attribute 传值
+-- 实际的值可能存放在 CPU 中,比如以一个指针或者数据的形式存放着,也有可能存放在 GPU 端,
+-- 通过刚才创建并赋值了的 buffer object 保存着。不管存放在哪里,都可以通过这个 API 给 attribute 赋值。
+-- 然后被赋值后的 attribute 就代表着若干个顶点的坐标或者颜色等等其他信息。
+/**
+* size: 每个顶点的变量数     size 只能是 1、2、3、4,也比较容易理解,因为 GLSL 中的变量最大也就是 vec4 和 mat4
+* type：用于指定存储的数据的数据类型 
+* normalized：传递进来的数据是否需要归一化
+* stride: 间隔
+* pointer: 假如实际数据保存在 CPU 端, 那么 pointer 就是一个指向实际数据存放位置的指针或者数组地址;
+		   如果实际数据保存在 GPU 的 VBO 中,那么 pointer 就传入一个偏移,意思就是从 VBO 的某一位开始,
+		   从之后的那些数值读取 stride 或者 size 为一个单元,将 size 个数值为有效数据,顶点数个单元的值作为 attribute 的值。
+*/
+void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer);
+
+
+
+
+-- 先说这组 API 和刚才那个 API 的区别,刚才那个 API,我们针对三个顶点可以传入三组不同的单元,
+-- 导致三个顶点的 attribute 都不同,而使用这组 API,所有顶点的 attribute 都一样了。
+-- *包含3部分，首先是一个数字,可以是 1 或者 2 或者 3 或者 4,第二个是个字母,可以有 f, 也可以没有 f,第三个是 v,可以有 v,也可以没有 v。
+void glVertexAttrib*(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+
+
+
+-- 获取 uniform 的 location
+GLint glGetUniformLocation(GLuint program, const GLchar *name);
+
+
+
+-- 给 uniform 进行赋值
+void glUniform*iv(GLint location, GLsizei count, const GLint *value);
+
+
+
+
+-- 设定一种颜色，作为清理绘制buffer所使用的颜色
+void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
+
+
+
+-- 这个函数的输入参数为一个mask值，用处是指定绘制buffer中的哪一块被清理，
+-- 因为绘制buffer中主要分为三块buffer，color buffer、depth buffer、stencil buffer
+void glClear(GLbitfield mask);
+
+
+
+
+
+-- 通过这个API绘制，会使用到GPU中保存的那些顶点中，从第first个顶点开始，到first+count个顶点结束，
+-- 使用count个顶点作为绘制的点
+/**
+* mode:  GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN
+         GL_TRIANGLE_STRIP是把123组成一个三角形，然后324再组成一个三角形，这个三角形与第一个三角形是有一条边是共享的，
+		 然后345再组成一个三角形，这个三角形与第二个三角形有一条边是共享的 
+		 GL_TRIANGLE_FAN会把123组成一个三角形，134组成第二个三角形，145组成第三个三角形
+* first:
+* count: 
+*/
+void glDrawArrays(GLenum mode, GLint first, GLsizei count);
+
+
+
+
+-- 开发者可以通过它指定一些不连续的顶点，所以需要传入一个数组，这个数组保存的就是顶点的index
+/**
+* count: 用于指定使用多少个顶点作为绘制的点
+* type: type必须是GL_UNSIGNED_BYTE或者GL_UNSIGNED_SHORT
+* indices: 最后一个参数 indices 非常重要,它分为两种情况,假如实际数据保存在 CPU 端, 
+           那么 indices 就是一个指向实际数据存放位置的指针或者数组地址。
+		   如果实际数据保存在 GPU 的 IBO 中,那么 indices 就传入一个偏移,
+		   意思就是从 IBO 的某一位开始,从之后的那些数值读取 count 个数值作为 indices 的值
+*/
+void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices);
+
+
+
+
+
+相机预览的顶点着色器和片元着色器代码：
+
+attribute vec4 aPosition;
+attribute vec4 aTextureCoord;
+uniform mat4 uTextureMatrix;
+varying vec2 vTextureCoord; //传给片元着色器
+void main(){
+	vTextureCoord = (uTextureMatrix * aTextureCoord).xy;
+	gl_Position = aPosition;
+}
+
+
+
+#extension GL_OES_EGL_image_external : require
+precision mediump float;
+
+uniform samplerExternalOES uTextureSampler;
+varying vec2 vTextureCoord;
+void main(){
+	vec4 vCameraColor = texture2D(uTextureSampler, vTextureCoord);
+	gl_FragColor = vCameraColor;
+}
+
+
+
+
+
+
+
