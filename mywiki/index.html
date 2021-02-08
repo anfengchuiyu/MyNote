@@ -727,6 +727,8 @@ Error message and password prompt
 
 <li>刷机流程-MY22</li>
 
+<li>着色器GLSL</li>
+
 <li>C++ 笔记 - STL 标准模板库</li>
 
 <li>Git常用命令</li>
@@ -14663,8 +14665,8 @@ Error message and password prompt
 <div created="20210204035139676" modified="20210206035736343" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210204035851987" modified="20210206035644503" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20210204035851987" modified="20210208133202242" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20210204035527148" modified="20210204075019166" title="$:/state/tab--1418380610">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Themes</pre>
@@ -14702,7 +14704,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="OpenGL纹理" title="$:/StoryList">
+<div list="着色器GLSL" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210204031306536" modified="20210204031309206" title="$:/theme">
@@ -14928,6 +14930,102 @@ fastboot flashing unlock
 fastboot --disable-verification flash vbmeta vbmeta.img
 fastboot --disable-verification flash system system.img
 ```
+
+
+</pre>
+</div>
+<div created="20210208133140156" modified="20210208142235056" tags="opengl" title="着色器GLSL">
+<pre>着色器是使用一种叫GLSL的类C语言写成的。GLSL是为图形计算量身定制的，它包含一些针对向量和矩阵操作的有用特性。
+
+!!''1.数据类型''
+* ''向量''
+
+```c
+// vecn  包含n个float分量的默认向量  n可以为1，2，3，4  例如
+vec2 aPos1;
+vec4 aPos2;
+
+//ivecn 包含n个int分量的向量
+//bvecn  包含n个bool分量的向量
+//uvecn  包含n个unsigned int分量的向量
+//dvecn  包含n个doubel分量的向量
+
+```
+
+一个向量的分量可以通过vec.x这种方式获取，这里x是指这个向量的第一个分量。你可以分别使用.x、.y、.z和.w来获取它们的第1、2、3、4个分量。GLSL也允许你对颜色使用rgba，或是对纹理坐标使用stpq访问相同的分量。
+
+向量重组:
+
+允许一些有趣而灵活的分量选择方式
+
+```c
+vec2 someVec;
+vec4 differentVec = someVec.xyxx;
+vec3 anotherVec = differentVec.zyw;
+vec4 otherVec = someVec.xxxx + anotherVec.yxzy;
+
+//我们也可以把一个向量作为一个参数传给不同的向量构造函数，以减少需求参数的数量
+vec2 vect = vec2(0.5, 0.7);
+vec4 result = vec4(vect, 0.0, 0.0);
+vec4 otherResult = vec4(result.xyz, 1.0);
+
+```
+
+
+
+
+```c
+//顶点着色器
+#version 330 core
+layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0
+
+out vec4 vertexColor; // 为片段着色器指定一个颜色输出
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0); // 注意我们如何把一个vec3作为vec4的构造器的参数
+    vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // 把输出变量设置为暗红色
+}
+
+
+//片段着色器
+#version 330 core
+out vec4 FragColor;
+
+in vec4 vertexColor; // 从顶点着色器传来的输入变量（名称相同、类型相同）
+
+void main()
+{
+    FragColor = vertexColor;
+}
+```
+
+!!''3.Uniform''
+
+Uniform是一种从CPU中的应用向GPU中的着色器发送数据的方式，但uniform和顶点属性有些不同。首先，uniform是全局的(Global)。全局意味着uniform变量必须在每个着色器程序对象中都是独一无二的，而且它可以被着色器程序的任意着色器在任意阶段访问。第二，无论你把uniform值设置成什么，uniform会一直保存它们的数据，直到它们被重置或更新。
+
+```c
+
+//获取uniform的location  没有找到返回-1
+int vertexColorLocation = glGetUniformLocation(shaderProgram, &quot;ourColor&quot;);
+
+//给设置uniform设置值
+//注意，查询uniform地址不要求你之前使用过着色器程序，但是更新一个uniform之前你必须先使用程序（调用glUseProgram)，因为它是在当前激活的着色器程序中设置uniform的。
+glUseProgram(shaderProgram);
+glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
+```
+
+因为OpenGL在其核心是一个C库，所以它不支持类型重载，在函数参数不同的时候就要为其定义新的函数；glUniform是一个典型例子。这个函数有一个特定的后缀，标识设定的uniform的类型。可能的后缀有：
+
+|!后缀|!含义|
+|f       |函数需要一个float作为它的值|
+|i       |函数需要一个int作为它的值|
+|ui     |函数需要一个unsigned int作为它的值|
+|3f     |函数需要3个float作为它的值|
+|fv     |函数需要一个float向量/数组作为它的值|
+
+
 
 
 </pre>
