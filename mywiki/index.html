@@ -14712,7 +14712,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Android Camera相机]]" title="$:/StoryList">
+<div created="20210213100404586" list="[[Android Camera相机]] Git常用命令" modified="20210213100404586" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210204031306536" modified="20210204031309206" title="$:/theme">
@@ -15605,7 +15605,7 @@ fastboot --disable-verification flash system system.img
 
 </pre>
 </div>
-<div created="20210213084524386" modified="20210213100129163" tags="音视频" title="Android Camera相机">
+<div created="20210213084524386" modified="20210213101223698" tags="音视频" title="Android Camera相机">
 <pre>Camera 有几个重要的基础概念。
 
 # facing相机的方向，一般后置摄像头和前置摄像头。
@@ -15620,6 +15620,8 @@ fastboot --disable-verification flash system system.img
 
 # Camera需要一个容器把的Surface显示在屏幕上，一般SurfaceView，TextureView等。
 
+
+[img[./imgs/640.webp]]
 
 ```java
 import android.app.Activity;
@@ -15725,6 +15727,7 @@ public class CameraHelp {
         }
         int result = 0;
         if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            // //前摄像头预览出现倒立并且是镜像状态的解决方案
             result = (cameraInfo.orientation + degress) % 360;
             result = (360 - result) % 360;
 
