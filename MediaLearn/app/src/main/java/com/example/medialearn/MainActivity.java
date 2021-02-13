@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.medialearn.camera1_demo.Camera1DemoAty;
 import com.example.medialearn.rtmp_push.PushActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PushActivity.class));
+            }
+        });
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Camera1DemoAty.class));
             }
         });
     }

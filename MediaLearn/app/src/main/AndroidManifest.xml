@@ -28,6 +28,7 @@
         <activity android:name=".CameraRecordActivity" />
         <activity android:name=".NativeEGLActivity" />
         <activity android:name=".rtmp_push.PushActivity" />
+        <activity android:name=".camera1_demo.Camera1DemoAty" />
     </application>
 
 </manifest>

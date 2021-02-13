@@ -723,11 +723,23 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
 
+<li>1.OpenGL ES学习</li>
+
+<li>2.着色器GLSL</li>
+
+<li>3.OpenGL纹理</li>
+
+<li>4.变换</li>
+
+<li>5.帧缓冲对象--FBO</li>
+
+<li>6.坐标系统</li>
+
 <li>发给QA的邮件模板</li>
 
 <li>刷机流程-MY22</li>
 
-<li>着色器GLSL</li>
+<li>Android Camera相机</li>
 
 <li>C++ 笔记 - STL 标准模板库</li>
 
@@ -736,10 +748,6 @@ Error message and password prompt
 <li>Home</li>
 
 <li>NodeJs配置html服务器</li>
-
-<li>OpenGL ES学习</li>
-
-<li>OpenGL纹理</li>
 
 <li>TableOfContents</li>
 
@@ -14662,14 +14670,14 @@ Error message and password prompt
 <div created="20210204075048014" modified="20210204075056670" title="$:/state/plugin-info-1685145806-$:/plugins/tiddlywiki/comments--1601674770">
 <pre>readme</pre>
 </div>
-<div created="20210204035139676" modified="20210206035736343" title="$:/state/showeditpreview">
+<div created="20210204035139676" modified="20210212113646203" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210204035851987" modified="20210208133202242" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20210204035851987" modified="20210209020741396" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
-<div created="20210204035527148" modified="20210204075019166" title="$:/state/tab--1418380610">
-<pre>$:/core/ui/ControlPanel/Plugins/Add/Themes</pre>
+<div created="20210204035527148" modified="20210209103302226" title="$:/state/tab--1418380610">
+<pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
 </div>
 <div created="20210204031309983" modified="20210205055126268" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -14683,8 +14691,8 @@ Error message and password prompt
 <div created="20210204040150786" modified="20210204040150786" title="$:/state/tab--959111941">
 <pre>$:/core/ui/ControlPanel/EditorTypes</pre>
 </div>
-<div created="20210204031304062" modified="20210205055133452" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Settings</pre>
+<div created="20210204031304062" modified="20210209103255250" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Plugins</pre>
 </div>
 <div created="20210204073712607" modified="20210205054959166" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/Gitea</pre>
@@ -14692,7 +14700,7 @@ Error message and password prompt
 <div created="20210204080222898" modified="20210205060425557" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Recent</pre>
 </div>
-<div created="20210204032124374" modified="20210206024637587" title="$:/state/tab/sidebar--595412856">
+<div created="20210204032124374" modified="20210209020746332" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20210205055104056" modified="20210205055113196" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -14704,7 +14712,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="着色器GLSL" title="$:/StoryList">
+<div list="[[Android Camera相机]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210204031306536" modified="20210204031309206" title="$:/theme">
@@ -14822,360 +14830,7 @@ Error message and password prompt
 <div created="20210204062120685" modified="20210204062120685" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
 <pre>fluid-fixed</pre>
 </div>
-<div created="20210205061802175" modified="20210205062157287" tags="gm" title="发给QA的邮件模板">
-<pre>title:
-
-[MY22][GMBugReport][verify]Defect 278643
-
-content:
-
-Hi Yang Zhao,
-
-Please help to Verify this issue, thanks a lot!
-https://info-gerrit.gm.com/c/gminfo/gmplatform/DomainServices/Camera/+/219752
-
-Test Type: Verify
-Defect ID: 258365
-SW: https://info-artifactory.gm.com/artifactory/info-prebuild/219752.3/full_gminfo37_gb-user&lt;br&gt;
-HW: Bench&lt;br&gt;
-Cluster: no special needs&lt;br&gt;
-ICS type: no special needs&lt;br&gt;
-Detail test Step: Please refer to Unit Test cases&lt;br&gt;
-Priority: High/Mid/Low&lt;br&gt;
-ETA:2020/11/13
-Contact member: Zhe Liu
-
-BRs
-
-Zhe Liu
-</pre>
-</div>
-<div created="20210205062250208" modified="20210205063330135" tags="gm" title="刷机流程-MY22">
-<pre>!! 1. Flash SOC gpt
-
-下下右，连接Tera Term选择第三个COM口，Baud Rate设置为115200， VIP RST button
-
-boot elk
-
-if CSM is High: fastboot flash gpt .\gpt.bin
-
-if CSM is MID: fastboot flash gpt .\gpt_16gb.bin
-
-''事先要开启设备的debug模式，不然可能fastboot连不上''
-
-
-!! 2. Flash VPI and ABL
-* 刷临时的VIP：
-
-上上右
-打开Renesas Flash Programmer -&gt; Connect Setting -&gt; COM 4 -&gt; Operation -&gt; Select '3326_MBC_FLASHBIOS_packet_bios'
--&gt; VIP RST button -&gt; Start
-
-''如果发生错误，重启下Ecomate/Bench''
-
-* ABL：
-下下左， VIP RST button
-
-执行命令：CSMDebugger.exe -i
-
-查看命令行输出，看是否连接了设备
-
-执行命令：CSMDebugger.exe -w info35_abl_gh.bin
-
-!! 3. Flash VIP in build package
-上上右
-
-打开Renesas Flash Programmer -&gt; Connect Setting -&gt; COM 4 -&gt; Operation -&gt; 选择build包中的VIP的hex文件
--&gt; VIP RST button -&gt; Start
-
-!! 4. Flash SOC with the script in build package
-下下右 --&gt; boot elk
-
-fastboot_gminfo37
-
-fastboot_gminfo37 16g
-
-!! 5.适配屏幕
-```bash
-cd update_cache/calibration
-cp /mnt/media_rw/.../1080.calovride .
-chmod 777 *
-sync
-reboot
-```
-''需要重启两次才能生效，如果还没效果可以点击小板的reset''
-
-
-
-fastboot刷机时，用bench情况下，各个模块的电源要开启,不然容易断开fastboot模式
-
-刷user版本后，需要拷贝test calibration和empty calibration到update_cache/calibrations,才可以正常启动
-
-
-可以通过命令行开启USB Debug模式:
-
-```bash
-su
-setprop sys.usb.config adb
-getprop sys.usb.config adb
-usb_otg_switch.sh p
-```
-
-
-跑VTS测试，userdebug和user版本都可以，但是让测试最好用user版本去跑
-
-```bash
- 刷GSI image:
-fastboot flashing unlock
-fastboot --disable-verification flash vbmeta vbmeta.img
-fastboot --disable-verification flash system system.img
-```
-
-
-</pre>
-</div>
-<div created="20210208133140156" modified="20210208142235056" tags="opengl" title="着色器GLSL">
-<pre>着色器是使用一种叫GLSL的类C语言写成的。GLSL是为图形计算量身定制的，它包含一些针对向量和矩阵操作的有用特性。
-
-!!''1.数据类型''
-* ''向量''
-
-```c
-// vecn  包含n个float分量的默认向量  n可以为1，2，3，4  例如
-vec2 aPos1;
-vec4 aPos2;
-
-//ivecn 包含n个int分量的向量
-//bvecn  包含n个bool分量的向量
-//uvecn  包含n个unsigned int分量的向量
-//dvecn  包含n个doubel分量的向量
-
-```
-
-一个向量的分量可以通过vec.x这种方式获取，这里x是指这个向量的第一个分量。你可以分别使用.x、.y、.z和.w来获取它们的第1、2、3、4个分量。GLSL也允许你对颜色使用rgba，或是对纹理坐标使用stpq访问相同的分量。
-
-向量重组:
-
-允许一些有趣而灵活的分量选择方式
-
-```c
-vec2 someVec;
-vec4 differentVec = someVec.xyxx;
-vec3 anotherVec = differentVec.zyw;
-vec4 otherVec = someVec.xxxx + anotherVec.yxzy;
-
-//我们也可以把一个向量作为一个参数传给不同的向量构造函数，以减少需求参数的数量
-vec2 vect = vec2(0.5, 0.7);
-vec4 result = vec4(vect, 0.0, 0.0);
-vec4 otherResult = vec4(result.xyz, 1.0);
-
-```
-
-
-
-
-```c
-//顶点着色器
-#version 330 core
-layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0
-
-out vec4 vertexColor; // 为片段着色器指定一个颜色输出
-
-void main()
-{
-    gl_Position = vec4(aPos, 1.0); // 注意我们如何把一个vec3作为vec4的构造器的参数
-    vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // 把输出变量设置为暗红色
-}
-
-
-//片段着色器
-#version 330 core
-out vec4 FragColor;
-
-in vec4 vertexColor; // 从顶点着色器传来的输入变量（名称相同、类型相同）
-
-void main()
-{
-    FragColor = vertexColor;
-}
-```
-
-!!''3.Uniform''
-
-Uniform是一种从CPU中的应用向GPU中的着色器发送数据的方式，但uniform和顶点属性有些不同。首先，uniform是全局的(Global)。全局意味着uniform变量必须在每个着色器程序对象中都是独一无二的，而且它可以被着色器程序的任意着色器在任意阶段访问。第二，无论你把uniform值设置成什么，uniform会一直保存它们的数据，直到它们被重置或更新。
-
-```c
-
-//获取uniform的location  没有找到返回-1
-int vertexColorLocation = glGetUniformLocation(shaderProgram, &quot;ourColor&quot;);
-
-//给设置uniform设置值
-//注意，查询uniform地址不要求你之前使用过着色器程序，但是更新一个uniform之前你必须先使用程序（调用glUseProgram)，因为它是在当前激活的着色器程序中设置uniform的。
-glUseProgram(shaderProgram);
-glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
-```
-
-因为OpenGL在其核心是一个C库，所以它不支持类型重载，在函数参数不同的时候就要为其定义新的函数；glUniform是一个典型例子。这个函数有一个特定的后缀，标识设定的uniform的类型。可能的后缀有：
-
-|!后缀|!含义|
-|f       |函数需要一个float作为它的值|
-|i       |函数需要一个int作为它的值|
-|ui     |函数需要一个unsigned int作为它的值|
-|3f     |函数需要3个float作为它的值|
-|fv     |函数需要一个float向量/数组作为它的值|
-
-
-
-
-</pre>
-</div>
-<div created="20170813030612872" creator="dimpurr" modified="20180703134956527" modifier="dimpurr" tags="C++ [[C++ 笔记]]" title="C++ 笔记 - STL 标准模板库">
-<pre>!!! 子条目索引
-
-&lt;&lt;list-links &quot;[tag[C++ 笔记 - STL 标准模板库]sort[title]]&quot;&gt;&gt;
-
-!!! 简介
-
-STL（Standard Template Library），即标准模板库，是一个具有工业强度的，高效的C++程序库。它被容纳于C++标准程序库（C++ Standard Library）中，是ANSI/ISO C++标准中最新的也是极具革命性的一部分。该库包含了诸多在计算机科学领域里所常用的基本数据结构和基本算法。为广大C++程序员们提供了一个可扩展的应用框架，高度体现了软件的可复用性。
-
-!!! STL 的六大组件
-
-* ''容器 (Container)'' 是一种数据结构，如 `list`，`vector`，和 `deques` ，以模板类的方法提供。为了访问容器中的数据，可以使用由容器类输出的迭代器；
-* ''迭代器 (Iterator)'' 提供了访问容器中对象的方法。例如，可以使用一对迭代器指定 `list` 或 `vector` 中的一定范围的对象。迭代器就如同一个指针。事实上，C++ 的指针也是一种迭代器。但是，迭代器也可以是那些定义了 `operator*()` 以及其他类似于指针的操作符地方法的类对象；
-* ''算法 (Algorithm)'' 是用来操作容器中的数据的模板函数。例如，STL 用 `sort()` 来对一个 `vector` 中的数据进行排序，用 `find()` 来搜索一个 `list` 中的对象，函数本身与他们操作的数据的结构和类型无关，因此他们可以在从简单数组到高度复杂容器的任何数据结构上使用；
-* ''仿函数 (Function object)''，''仿函数 (functor'') 又称之为''函数对象 (function object)''，其实就是重载了()操作符的 `struct`，没有什么特别的地方
-* ''迭代适配器 (Adaptor)''
-* ''空间配制器 (allocator)'' 其中主要工作包括两部分 1.对象的创建与销毁 2.内存的获取与释放
-
-!! STL 容器
-
-!!! 序列式容器 (Sequence containers)
-
-每个元素都有固定位置，取决于插入时机和地点，和元素值无关。
-
-* `Vectors`：将元素置于一个''动态数组''中加以管理，可以随机存取元素（用索引直接存取），''数组尾部添加或移除元素非常快速''。但是在中部或头部安插元素比较费时
-* `Deques`：是 double-ended queue 的缩写，可以随机存取元素（用索引直接存取），''数组头部和尾部添加或移除元素都非常快速''。但是在中部或头部安插元素比较费时
-* `Lists`：双向链表，不提供随机存取（按顺序走到需存取的元素，O(n)），''在任何位置上执行插入或删除动作都非常迅速''，内部只需调整一下指针
-
-!!! 关联式容器 (Associated containers)
-
-元素位置取决于特定的排序准则，和插入顺序无关。
-
-* `Sets/Multisets` ：''内部的元素依据其值自动排序''，`Set` 内的相同数值的元素只能出现一次，`Multisets` 内可包含多个数值相同的元素，内部由二叉树实现（实际上基于红黑树 (RB-tree) 实现），便于查找
-* `Maps/Multimaps` ：`Map` 的元素是''成对的键值/实值''，内部的元素依据其值自动排序，`Map` 内的相同数值的元素只能出现一次，`Multimaps` 内可包含多个数值相同的元素，内部由二叉树实现（实际上基于红黑树 (RB-tree) 实现），便于查找
-* 另外有其他容器 `hash_map`, `hash_set`, `hash_multiset`, `hash_multimap`
-
-容器的比较：
-
-|!|!`Vector`|!`Deque`|!`List`|!`Set`|!`MultiSet`|!`Map`|!`MultiMap`|
-|!内部结构|dynamic array|array of arrays|double linked list|binary tree|binary tree|binary tree|binary tree|
-|!随机存取|Yes|Yes|No|No|No|Yes (key)|No|
-|!搜索速度|慢|慢|很慢|快|快|快|快|
-|!快速插入移除|尾部|首尾|任何位置|--|--|--|--|
-
- 
-
-!! STL 迭代器 
-
-Iterator（迭代器）模式又称 Cursor（游标）模式，运用该模式，使得我们可以''在不知道对象内部表示的情况下，按照一定顺序（由 iterator 提供的方法）访问聚合对象中的各个元素''。
-
-迭代器能够让迭代器与算法不干扰的相互发展，最后又能无间隙的粘合起来，重载了*，＋＋，＝＝，！＝，＝运算符，用以操作复杂的数据结构。''容器提供迭代器，算法使用迭代器''。
-
-常见的一些迭代器类型：`iterator`、`const_iterator`、`reverse_iterator` 和 `const_reverse_iterator`
-
-!!! 迭代器的操作
-
-每种迭代器均可进行包括表中前一种迭代器可进行的操作。
-
-|!迭代器操作|!说明|
-|!所有迭代器|&lt;|
-|p++|后置自增迭代器|
-|++p|前置自增迭代器|
-|!输入迭代器|&lt;|
-|*p|复引用迭代器，作为右值|
-|p=p1|将一个迭代器赋给另一个迭代器|
-|p==p1|比较迭代器的相等性|
-|p!=p1|比较迭代器的不等性|
-|!输出迭代器|&lt;|
-|*p|复引用迭代器，作为左值|
-|p=p1|将一个迭代器赋给另一个迭代器|
-|!正向迭代器|&lt;|
-|提供输入输出迭代器的所有功能|&lt;|
-|!双向迭代器|&lt;|
-|`--p`|前置自减迭代器|
-|`p--`|后置自减迭代器|
-|!随机迭代器|&lt;|
-|p+=i|将迭代器递增i位|
-|p-=i|将迭代器递减i位|
-|p+i|在p位加i位后的迭代器|
-|p-i|在p位减i位后的迭代器|
-|p[i]|返回p位元素偏离i位的元素引用|
-|p&lt;p1|如果迭代器p的位置在p1前，返回true，否则返回false|
-|p&lt;=p1|p的位置在p1的前面或同一位置时返回true，否则返回false|
-|p&gt;p1|如果迭代器p的位置在p1后，返回true，否则返回false|
-|p&gt;=p1p|的位置在p1的后面或同一位置时返回true，否则返回false|
-
-!!! 容器支持的迭代器
-
-只有顺序容器和关联容器支持迭代器遍历，各容器支持的迭代器的类别如下：
-
-|!容器|!支持的迭代器类别|!说明|
-|vector|随机访问|一种随机访问的数组类型，提供了对数组元素进行快速随机访问以及在序列尾部进行快速的插入和删除操作的功能。可以再需要的时候修改其自身的大小|
-|deque|随机访问|一种随机访问的数组类型，提供了序列两端快速进行插入和删除操作的功能。可以再需要的时候修改其自身的大小|
-|list|双向|一种不支持随机访问的数组类型，插入和删除所花费的时间是固定的，与位置无关|
-|set|双向|一种随机存取的容器，其关键字和数据元素是同一个值。所有元素都必须具有惟一值|
-|multiset|双向|一种随机存取的容器，其关键字和数据元素是同一个值。可以包含重复的元素|
-|map|双向|一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个特定的关键字只能与一个元素关联|
-|multimap|双向|一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个关键字可以与多个数据元素关联|
-|stack|不支持|适配器容器类型，用vector，deque或list对象创建了一个先进后出容器|
-|queue|不支持|适配器容器类型，用deque或list对象创建了一个先进先出容器|
-|priority_queue|不支持|适配器容器类型，用vector或deque对象创建了一个排序队列|
-
-!! STL 适配器
-
-STL提供了三个容器适配器：`queue`、`priority_queue`、`stack`。这些适配器都是包装了`vector`、`list`、`deque`中某个顺序容器的包装器。注意：''适配器没有提供迭代器，也不能同时插入或删除多个元素''。</pre>
-</div>
-<div created="20210204062201996" modified="20210205060803543" tags="git Home" title="Git常用命令">
-<pre>!!!Git原理
-[img[https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=613996794,3695167693&amp;fm=26&amp;gp=0.jpg]]
-
-* Workspace：工作区
-* Index / Stage：暂存区
-* Repository：仓库区（或本地仓库）
-* Remote：远程仓库
-
-!!!查看远程仓库地址
-```bash
-git remote -v
-```
-
-!!!回退代码
-```bash
-默认是mixed模式
-git reset HEAD^
-git reset HEAD^^
-
-hard模式,直接清空工作区
-git reset --hard HEAD^
-```
-
-
-</pre>
-</div>
-<div created="20210205060456896" modified="20210205060548157" tags="TableOfContents" title="Home">
-<pre>aaa</pre>
-</div>
-<div created="20210204100838879" modified="20210204101033739" tags="nodejs" title="NodeJs配置html服务器">
-<pre>!!! 安装node
-http://nodejs.cn/download/
-
-!!! 安装express
-```bash
-npm install express -g
-```</pre>
-</div>
-<div created="20210206033924037" modified="20210206045437618" tags="opengl" title="OpenGL ES学习">
+<div created="20210206033924037" modified="20210212135819833" tags="opengl" title="1.OpenGL ES学习">
 <pre>!! ''渲染管线''
 [img[./imgs/pipeline.png]]
 
@@ -15435,8 +15090,809 @@ glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0)
 glBindVertexArray(0);
 ```</pre>
 </div>
-<div created="20210206053647043" modified="20210206055649453" tags="opengl" title="OpenGL纹理">
-<pre></pre>
+<div created="20210208133140156" modified="20210212135808168" tags="opengl" title="2.着色器GLSL">
+<pre>着色器是使用一种叫GLSL的类C语言写成的。GLSL是为图形计算量身定制的，它包含一些针对向量和矩阵操作的有用特性。
+
+!!''1.数据类型''
+* ''向量''
+
+```c
+// vecn  包含n个float分量的默认向量  n可以为1，2，3，4  例如
+vec2 aPos1;
+vec4 aPos2;
+
+//ivecn 包含n个int分量的向量
+//bvecn  包含n个bool分量的向量
+//uvecn  包含n个unsigned int分量的向量
+//dvecn  包含n个doubel分量的向量
+
+```
+
+一个向量的分量可以通过vec.x这种方式获取，这里x是指这个向量的第一个分量。你可以分别使用.x、.y、.z和.w来获取它们的第1、2、3、4个分量。GLSL也允许你对颜色使用rgba，或是对纹理坐标使用stpq访问相同的分量。
+
+向量重组:
+
+允许一些有趣而灵活的分量选择方式
+
+```c
+vec2 someVec;
+vec4 differentVec = someVec.xyxx;
+vec3 anotherVec = differentVec.zyw;
+vec4 otherVec = someVec.xxxx + anotherVec.yxzy;
+
+//我们也可以把一个向量作为一个参数传给不同的向量构造函数，以减少需求参数的数量
+vec2 vect = vec2(0.5, 0.7);
+vec4 result = vec4(vect, 0.0, 0.0);
+vec4 otherResult = vec4(result.xyz, 1.0);
+
+```
+
+
+
+
+```c
+//顶点着色器
+#version 330 core
+layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0
+
+out vec4 vertexColor; // 为片段着色器指定一个颜色输出
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0); // 注意我们如何把一个vec3作为vec4的构造器的参数
+    vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // 把输出变量设置为暗红色
+}
+
+
+//片段着色器
+#version 330 core
+out vec4 FragColor;
+
+in vec4 vertexColor; // 从顶点着色器传来的输入变量（名称相同、类型相同）
+
+void main()
+{
+    FragColor = vertexColor;
+}
+```
+
+!!''3.Uniform''
+
+Uniform是一种从CPU中的应用向GPU中的着色器发送数据的方式，但uniform和顶点属性有些不同。首先，uniform是全局的(Global)。全局意味着uniform变量必须在每个着色器程序对象中都是独一无二的，而且它可以被着色器程序的任意着色器在任意阶段访问。第二，无论你把uniform值设置成什么，uniform会一直保存它们的数据，直到它们被重置或更新。
+
+```c
+
+//获取uniform的location  没有找到返回-1
+int vertexColorLocation = glGetUniformLocation(shaderProgram, &quot;ourColor&quot;);
+
+//给设置uniform设置值
+//注意，查询uniform地址不要求你之前使用过着色器程序，但是更新一个uniform之前你必须先使用程序（调用glUseProgram)，因为它是在当前激活的着色器程序中设置uniform的。
+glUseProgram(shaderProgram);
+glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
+```
+
+因为OpenGL在其核心是一个C库，所以它不支持类型重载，在函数参数不同的时候就要为其定义新的函数；glUniform是一个典型例子。这个函数有一个特定的后缀，标识设定的uniform的类型。可能的后缀有：
+
+|!后缀|!含义|
+|f       |函数需要一个float作为它的值|
+|i       |函数需要一个int作为它的值|
+|ui     |函数需要一个unsigned int作为它的值|
+|3f     |函数需要3个float作为它的值|
+|fv     |函数需要一个float向量/数组作为它的值|
+
+
+
+
+</pre>
+</div>
+<div created="20210206053647043" modified="20210212135754873" tags="opengl" title="3.OpenGL纹理">
+<pre>!!''opengl 纹理坐标：''
+
+[img[./imgs/20181218202105492.png]]
+
+
+!! ''纹理环绕方式''
+
+纹理坐标的范围通常是从(0, 0)到(1, 1)，那如果我们把纹理坐标设置在范围之外会发生什么？OpenGL默认的行为是重复这个纹理图像（我们基本上忽略浮点纹理坐标的整数部分），但OpenGL提供了更多的选择：
+
+|!环绕方式|!描述|
+|GL_REPEAT|对纹理的默认行为。重复纹理图像。|
+|GL_MIRRORED_REPEAT|和GL_REPEAT一样，但每次重复图片是镜像放置的。|
+|GL_CLAMP_TO_EDGE|纹理坐标会被约束在0到1之间，超出的部分会重复纹理坐标的边缘，产生一种边缘被拉伸的效果。|
+|GL_CLAMP_TO_BORDER|超出的坐标为用户指定的边缘颜色。|
+
+下面是这些环绕方式的示例：
+
+[img[./imgs/texture_wrapping.png]]
+
+
+可以使用glTexParameter*函数对单独的一个坐标轴设置（s、t（如果是使用3D纹理那么还有一个r）它们和x、y、z是等价的）：
+
+```c
+/**
+第一个参数指定了纹理目标；我们使用的是2D纹理，因此纹理目标是GL_TEXTURE_2D。第二个参数需要我们指定设置的选项与应用的纹理轴。我们打算配置的是WRAP选项，并且指定S和T轴。最后一个参数需要我们传递一个环绕方式(Wrapping)，在这个例子中OpenGL会给当前激活的纹理设定纹理环绕方式为GL_MIRRORED_REPEAT。
+*/
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+
+
+/**
+如果我们选择GL_CLAMP_TO_BORDER选项，我们还需要指定一个边缘的颜色。这需要使用glTexParameter函数的fv后缀形式，用GL_TEXTURE_BORDER_COLOR作为它的选项，并且传递一个float数组作为边缘的颜色值：
+*/
+float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+```
+
+!! ''纹理过滤''
+
+纹理坐标不依赖于分辨率(Resolution)，它可以是任意浮点值，所以OpenGL需要知道怎样将纹理像素(Texture Pixel，也叫Texel，译注1)映射到纹理坐标。当你有一个很大的物体但是纹理的分辨率很低的时候这就变得很重要了。
+
+
+GL_NEAREST（也叫邻近过滤，Nearest Neighbor Filtering）是OpenGL默认的纹理过滤方式。当设置为GL_NEAREST的时候，OpenGL会选择中心点最接近纹理坐标的那个像素。下图中你可以看到四个像素，加号代表纹理坐标。左上角那个纹理像素的中心距离纹理坐标最近，所以它会被选择为样本颜色：
+
+[img[./imgs/filter_nearest.png]]
+
+GL_LINEAR（也叫线性过滤，(Bi)linear Filtering）它会基于纹理坐标附近的纹理像素，计算出一个插值，近似出这些纹理像素之间的颜色。一个纹理像素的中心距离纹理坐标越近，那么这个纹理像素的颜色对最终的样本颜色的贡献越大。下图中你可以看到返回的颜色是邻近像素的混合色：
+
+[img[./imgs/filter_linear.png]]
+
+
+那么这两种纹理过滤方式有怎样的视觉效果呢？让我们看看在一个很大的物体上应用一张低分辨率的纹理会发生什么吧（纹理被放大了，每个纹理像素都能看到）：
+
+[img[./imgs/texture_filtering.png]]
+
+
+GL_NEAREST产生了颗粒状的图案，我们能够清晰看到组成纹理的像素，而GL_LINEAR能够产生更平滑的图案，很难看出单个的纹理像素。GL_LINEAR可以产生更真实的输出，但有些开发者更喜欢8-bit风格，所以他们会用GL_NEAREST选项。
+
+当进行放大(Magnify)和缩小(Minify)操作的时候可以设置纹理过滤的选项，比如你可以在纹理被缩小的时候使用邻近过滤，被放大时使用线性过滤。我们需要使用glTexParameter*函数为放大和缩小指定过滤方式。这段代码看起来会和纹理环绕方式的设置很相似：
+
+```c
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+```
+
+!! ''使用纹理''
+
+
+```c
+unsigned int texture;
+glGenTextures(1, &amp;texture);
+glBindTexture(GL_TEXTURE_2D, texture);
+// 为当前绑定的纹理对象设置环绕、过滤方式
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+// 加载并生成纹理
+int width, height, nrChannels;
+unsigned char *data = stbi_load(&quot;container.jpg&quot;, &amp;width, &amp;height, &amp;nrChannels, 0);
+if (data)
+{
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+}
+else
+{
+    std::cout &lt;&lt; &quot;Failed to load texture&quot; &lt;&lt; std::endl;
+}
+stbi_image_free(data);
+```
+
+我们怎样能把纹理对象传给片段着色器呢？GLSL有一个供纹理对象使用的内建数据类型，叫做采样器(Sampler)，它以纹理类型作为后缀，比如sampler1D、sampler3D，或在我们的例子中的sampler2D。我们可以简单声明一个uniform sampler2D把一个纹理添加到片段着色器中
+
+使用glUniform1i，我们可以给纹理采样器分配一个位置值，这样的话我们能够在一个片段着色器中设置多个纹理。一个纹理的位置值通常称为一个纹理单元(Texture Unit)。一个纹理的默认纹理单元是0，它是默认的激活纹理单元，所以教程前面部分我们没有分配一个位置值。
+
+使用多个纹理：
+
+```c
+//先激活再绑定  纹理单元GL_TEXTURE0默认总是被激活
+glActiveTexture(GL_TEXTURE0);
+glBindTexture(GL_TEXTURE_2D, texture1);
+
+glActiveTexture(GL_TEXTURE1);
+glBindTexture(GL_TEXTURE_2D, texture2);
+```
+</pre>
+</div>
+<div created="20210209103115284" modified="20210212135738688" tags="opengl" title="4.变换">
+<pre>!! ''向量''
+
+* 向量与标量运算
+
+标量(Scalar)只是一个数字（或者说是仅有一个分量的向量）。当把一个向量加/减/乘/除一个标量，我们可以简单的把向量的每个分量分别进行该运算。对于加法来说会像这样:
+(1, 2) + x = (1+x, 2+x)
+
+* 向量取反
+
+对一个向量取反(Negate)会将其方向逆转
+
+
+* 向量之间加减
+
+向量的加法可以被定义为是分量的(Component-wise)相加，即将一个向量中的每一个分量加上另一个向量的对应分量
+
+向量v = (4, 2)和k = (1, 2)可以直观地表示为：
+
+[img[./imgs/vectors_addition.png]]
+
+两个向量的相减会得到这两个向量指向位置的差。这在我们想要获取两点的差会非常有用。
+
+[img[./imgs/vectors_subtraction.png]]
+
+
+有一个特殊类型的向量叫`单位向量`(Unit Vector)。单位向量有一个特别的性质——它的长度是1。我们可以用任意向量的每个分量除以向量的长度得到它的单位向量。我们把这种方法叫做一个`向量的标准化`(Normalizing)。
+
+
+* 向量相乘
+** 点乘
+
+两个向量的点乘等于它们的数乘结果乘以两个向量之间夹角的余弦值
+
+** 叉乘
+
+
+!!''矩阵相乘''
+
+只有当左侧矩阵的列数与右侧矩阵的行数相等，两个矩阵才能相乘。
+矩阵相乘不遵守交换律(Commutative)，也就是说A⋅B≠B⋅A。
+
+[img[./imgs/2021-02-09-203656.png]]
+</pre>
+</div>
+<div created="20210212111736206" modified="20210212135723624" tags="opengl" title="5.帧缓冲对象--FBO">
+<pre>我们已经使用了很多屏幕缓冲了：用于写入颜色值的颜色缓冲、用于写入深度信息的深度缓冲和允许我们根据一些条件丢弃特定片段的模板缓冲。这些缓冲结合起来叫做帧缓冲(Framebuffer)，它被储存在内存中。OpenGL允许我们定义我们自己的帧缓冲，也就是说我们能够定义我们自己的颜色缓冲，甚至是深度缓冲和模板缓冲。
+
+''实际上是一个可添加缓冲区的容器，可以为其添加纹理或渲染缓冲区对象（RBO）''
+
+我们目前所做的所有操作都是在默认帧缓冲的渲染缓冲上进行的。默认的帧缓冲是在你创建窗口的时候生成和配置的（GLFW帮我们做了这些）。有了我们自己的帧缓冲，我们就能够有更多方式来渲染了。有了FBO后，也可以先把内容绘制到FBO上，然后再搞到framebuffer上，最后再swap到屏幕上。''比如在场景中有一面镜子，那么就可以先以镜子的视角把世界绘制到FBO上，然后再把FBO上的内容作为一张texture绘制到真实世界的镜子这个平面上。''
+
+[img[./imgs/3239933-62aa8f51b1486014.webp]]
+
+''FBO 本身不能用于渲染，只有添加了纹理或者渲染缓冲区之后才能作为渲染目标，它提供了 3 种附着（Attachment），分别是颜色附着、深度附着和模板附着。''
+
+一个完整的帧缓冲需要满足以下的条件:
+
+# 附加至少一个缓冲（颜色、深度或模板缓冲）。
+# 至少有一个颜色附件(Attachment)。
+# 所有的附件都必须是完整的（保留了内存）。
+# 每个缓冲都应该有相同的样本数。
+
+附件是一个内存位置，它能够作为帧缓冲的一个缓冲，可以将它想象为一个图像。当创建一个附件的时候我们有两个选项：纹理或渲染缓冲对象(Renderbuffer Object)。
+
+```c
+
+//1.创建一个帧缓冲对象(Framebuffer Object, FBO)
+unsigned int fbo;
+glGenFramebuffers(1, &amp;fbo);
+
+//2.绑定
+glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
+//3.纹理附件
+
+//3.1 生成纹理
+unsigned int texture;
+glGenTextures(1, &amp;texture);
+glBindTexture(GL_TEXTURE_2D, texture);
+//data参数传递了NULL, 我们仅仅分配了内存而没有填充它。填充这个纹理将会在我们渲染到帧缓冲之后来进行
+glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+//3.2 将它附加到当前绑定的帧缓冲对象
+glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+
+
+//4.1创建一个深度和模板附件渲染缓冲对象
+unsigned int rbo;
+glGenRenderbuffers(1, &amp;rbo);
+glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT); 
+//4.2 use a single renderbuffer object for both a depth AND stencil buffer.
+glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
+
+//最后，我们希望检查帧缓冲是否是完整的，如果不是，我们将打印错误信息。
+if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    std::cout &lt;&lt; &quot;ERROR::FRAMEBUFFER:: Framebuffer is not complete!&quot; &lt;&lt; std::endl;
+glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+...
+
+void onDraw(){
+//使用FBO
+glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+// make sure we clear the framebuffer's content
+glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+...进行绘制
+
+glBindFramebuffer(GL_FRAMEBUFFER, 0);//恢复为默认的帧缓冲(绘制到屏幕上)
+
+...
+}
+
+
+```
+</pre>
+</div>
+<div created="20210212135626232" modified="20210213083329165" tags="" title="6.坐标系统">
+<pre>为了将坐标从一个坐标系变换到另一个坐标系，我们需要用到几个变换矩阵，最重要的几个分别是模型(Model)、观察(View)、投影(Projection)三个矩阵。我们的顶点坐标起始于局部空间(Local Space)，在这里它称为局部坐标(Local Coordinate)，它在之后会变为世界坐标(World Coordinate)，观察坐标(View Coordinate)，裁剪坐标(Clip Coordinate)，并最后以屏幕坐标(Screen Coordinate)的形式结束。下面的这张图展示了整个流程以及各个变换过程做了什么：
+
+[img[./imgs/coordinate_systems.png]]
+
+# 局部坐标是对象相对于局部原点的坐标，也是物体起始的坐标。
+
+# 下一步是将局部坐标变换为世界空间坐标，世界空间坐标是处于一个更大的空间范围的。这些坐标相对于世界的全局原点，它们会和其它物体一起相对于世界的原点进行摆放。
+
+# 接下来我们将世界坐标变换为观察空间坐标，使得每个坐标都是从摄像机或者说观察者的角度进行观察的。
+
+# 坐标到达观察空间之后，我们需要将其投影到裁剪坐标。裁剪坐标会被处理至-1.0到1.0的范围内，并判断哪些顶点将会出现在屏幕上。
+
+# 最后，我们将裁剪坐标变换为屏幕坐标，我们将使用一个叫做视口变换(Viewport Transform)的过程。视口变换将位于-1.0到1.0范围的坐标变换到由glViewport函数所定义的坐标范围内。最后变换出来的坐标将会送到光栅器，将其转化为片段。
+
+''将观察坐标变换为裁剪坐标的投影矩阵可以为两种不同的形式：''
+
+# 正射投影
+[img[./imgs/orthographic_frustum.png]]
+
+创建一个正射投影矩阵
+
+```c
+/*前两个参数指定了平截头体的左右坐标，第三和第四参数指定了平截头体的底部和顶部。通过这四个参数我们定义了近平面和远平面的大小，然后第五和第六个参数则定义了近平面和远平面的距离。*/
+glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+```
+
+# 透视投影
+
+[img[./imgs/perspective_frustum.png]]
+
+创建一个透视投影矩阵
+
+```c
+/*第一个参数定义了fov的值，它表示的是视野(Field of View)，并且设置了观察空间的大小。如果想要一个真实的观察效果，它的值通常设置为45.0f，但想要一个末日风格的结果你可以将其设置一个更大的值。第二个参数设置了宽高比，由视口的宽除以高所得。第三和第四个参数设置了平截头体的近和远平面。我们通常设置近距离为0.1f，而远距离设为100.0f。所有在近平面和远平面内且处于平截头体内的顶点都会被渲染。*/
+glm::mat4 proj = glm::perspective(glm::radians(45.0f), (float)width/(float)height, 0.1f, 100.0f);
+```
+
+```c
+顶点着色器
+#version 330 core
+layout (location = 0) in vec3 aPos;
+...
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    // 注意乘法要从右向左读
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    ...
+}
+
+////////////////////////////////////////////
+//创建矩阵，设置矩阵的值，并传递给着色器
+glm::mat4 model = glm::mat4(1.0f);
+glm::mat4 view = glm::mat4(1.0f);
+glm::mat4 projection = glm::mat4(1.0f);
+
+model = glm::rotate(model, time * glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+projection = glm::perspective(glm::radians(45.0f), (float) 800 / float(600), 0.1f, 100.0f);
+
+int modelPosition = glGetUniformLocation(shaderProgram, &quot;model&quot;);
+glUniformMatrix4fv(modelPosition, 1, GL_FALSE, glm::value_ptr(model));
+
+int viewPosition = glGetUniformLocation(shaderProgram, &quot;view&quot;);
+glUniformMatrix4fv(viewPosition, 1, GL_FALSE, &amp;view[0][0]);
+
+int projectionPos = glGetUniformLocation(shaderProgram, &quot;projection&quot;);
+glUniformMatrix4fv(projectionPos, 1, GL_FALSE, glm::value_ptr(projection));
+
+```</pre>
+</div>
+<div created="20210205061802175" modified="20210205062157287" tags="gm" title="发给QA的邮件模板">
+<pre>title:
+
+[MY22][GMBugReport][verify]Defect 278643
+
+content:
+
+Hi Yang Zhao,
+
+Please help to Verify this issue, thanks a lot!
+https://info-gerrit.gm.com/c/gminfo/gmplatform/DomainServices/Camera/+/219752
+
+Test Type: Verify
+Defect ID: 258365
+SW: https://info-artifactory.gm.com/artifactory/info-prebuild/219752.3/full_gminfo37_gb-user&lt;br&gt;
+HW: Bench&lt;br&gt;
+Cluster: no special needs&lt;br&gt;
+ICS type: no special needs&lt;br&gt;
+Detail test Step: Please refer to Unit Test cases&lt;br&gt;
+Priority: High/Mid/Low&lt;br&gt;
+ETA:2020/11/13
+Contact member: Zhe Liu
+
+BRs
+
+Zhe Liu
+</pre>
+</div>
+<div created="20210205062250208" modified="20210205063330135" tags="gm" title="刷机流程-MY22">
+<pre>!! 1. Flash SOC gpt
+
+下下右，连接Tera Term选择第三个COM口，Baud Rate设置为115200， VIP RST button
+
+boot elk
+
+if CSM is High: fastboot flash gpt .\gpt.bin
+
+if CSM is MID: fastboot flash gpt .\gpt_16gb.bin
+
+''事先要开启设备的debug模式，不然可能fastboot连不上''
+
+
+!! 2. Flash VPI and ABL
+* 刷临时的VIP：
+
+上上右
+打开Renesas Flash Programmer -&gt; Connect Setting -&gt; COM 4 -&gt; Operation -&gt; Select '3326_MBC_FLASHBIOS_packet_bios'
+-&gt; VIP RST button -&gt; Start
+
+''如果发生错误，重启下Ecomate/Bench''
+
+* ABL：
+下下左， VIP RST button
+
+执行命令：CSMDebugger.exe -i
+
+查看命令行输出，看是否连接了设备
+
+执行命令：CSMDebugger.exe -w info35_abl_gh.bin
+
+!! 3. Flash VIP in build package
+上上右
+
+打开Renesas Flash Programmer -&gt; Connect Setting -&gt; COM 4 -&gt; Operation -&gt; 选择build包中的VIP的hex文件
+-&gt; VIP RST button -&gt; Start
+
+!! 4. Flash SOC with the script in build package
+下下右 --&gt; boot elk
+
+fastboot_gminfo37
+
+fastboot_gminfo37 16g
+
+!! 5.适配屏幕
+```bash
+cd update_cache/calibration
+cp /mnt/media_rw/.../1080.calovride .
+chmod 777 *
+sync
+reboot
+```
+''需要重启两次才能生效，如果还没效果可以点击小板的reset''
+
+
+
+fastboot刷机时，用bench情况下，各个模块的电源要开启,不然容易断开fastboot模式
+
+刷user版本后，需要拷贝test calibration和empty calibration到update_cache/calibrations,才可以正常启动
+
+
+可以通过命令行开启USB Debug模式:
+
+```bash
+su
+setprop sys.usb.config adb
+getprop sys.usb.config adb
+usb_otg_switch.sh p
+```
+
+
+跑VTS测试，userdebug和user版本都可以，但是让测试最好用user版本去跑
+
+```bash
+ 刷GSI image:
+fastboot flashing unlock
+fastboot --disable-verification flash vbmeta vbmeta.img
+fastboot --disable-verification flash system system.img
+```
+
+
+</pre>
+</div>
+<div created="20210213084524386" modified="20210213100129163" tags="音视频" title="Android Camera相机">
+<pre>Camera 有几个重要的基础概念。
+
+# facing相机的方向，一般后置摄像头和前置摄像头。
+
+# Orientation：相机采集图片的角度，摄像头的传感器在手机中是横向的，在预览的时候根据Camera的预览方向进行顺时针旋转对应角度进行设置即可正常预览。如果不正确设置会导致预览时出现倒立、镜像等问题。把预览的图片保存为相册也要单独设置方向，注意这个方向和预览方向互不相干。
+
+# 预览图片的大小 预览容器的大小和摄像头支持的图片预览的图片大小，如果设置了Camera不支持的预览大小，会导致黑屏。
+
+# 可以设置帧回调然后，在每一帧中进行业务处理，比如，人脸识别等功能
+
+# Camera预览的图片格式有NV21 YUV420sp等
+
+# Camera需要一个容器把的Surface显示在屏幕上，一般SurfaceView，TextureView等。
+
+
+```java
+import android.app.Activity;
+import android.hardware.Camera;
+import android.util.Log;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+
+import java.io.IOException;
+
+public class CameraHelp {
+
+    private static final String TAG = &quot;CameraUtil&quot;;
+
+    private Activity activity;
+    private Camera mCamera;
+    private int previewWidth;
+    private int previewHeight;
+
+
+    public CameraHelp(Activity activity, int previewWidth, int previewHeight) {
+        this.activity = activity;
+        this.previewWidth = previewWidth;
+        this.previewHeight = previewHeight;
+    }
+
+
+    public void openFrontCamera() {
+        openCamera(Camera.CameraInfo.CAMERA_FACING_FRONT);
+    }
+
+    public void openBackCamera() {
+        openCamera(Camera.CameraInfo.CAMERA_FACING_BACK);
+    }
+
+    public void startPreview(SurfaceHolder surfaceHolder) {
+        if (mCamera != null) {
+            try {
+                mCamera.setPreviewDisplay(surfaceHolder);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mCamera.startPreview();
+        }
+    }
+
+    public int getPreviewWidth() {
+        return previewWidth;
+    }
+
+    public int getPreviewHeight() {
+        return previewHeight;
+    }
+
+    private void openCamera(int cameraId) {
+        releaseCamera();
+
+        Camera camera = Camera.open(cameraId);
+
+        Camera.Parameters parameters = camera.getParameters();
+        Camera.Size ppsfv = parameters.getPreferredPreviewSizeForVideo();
+
+        boolean find = false;
+        for (Camera.Size size : parameters.getSupportedPreviewSizes()) {
+            if (size.width == previewWidth &amp;&amp; size.height == previewHeight) {
+                parameters.setPreviewSize(previewWidth, previewHeight);
+                find = true;
+                break;
+            }
+        }
+
+        if (ppsfv != null &amp;&amp; !find) {
+            parameters.setPreviewSize(ppsfv.width, ppsfv.height);
+        }
+
+        setCamerDisplayOrientation(activity, camera, cameraId);
+
+        camera.setParameters(parameters);
+        mCamera = camera;
+    }
+
+
+    private void setCamerDisplayOrientation(Activity activity, Camera camera, int cameraId) {
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        Camera.getCameraInfo(cameraId, cameraInfo);
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        Log.i(TAG, &quot;setCamerDisplayOrientation: rotation=&quot; + rotation + &quot; cameraId=&quot; + cameraId);
+        int degress = 0;
+
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                degress = 0;
+                break;
+            case Surface.ROTATION_90:
+                degress = 90;
+                break;
+            case Surface.ROTATION_180:
+                degress = 180;
+                break;
+            case Surface.ROTATION_270:
+                degress = 270;
+                break;
+        }
+        int result = 0;
+        if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (cameraInfo.orientation + degress) % 360;
+            result = (360 - result) % 360;
+
+        } else if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+            result = (cameraInfo.orientation - degress + 360) % 360;
+        }
+        Log.i(TAG, &quot;setCamerDisplayOrientation: result=&quot; + result + &quot; cameraId=&quot; + cameraId + &quot; facing=&quot; + cameraInfo.facing + &quot; cameraInfo.orientation=&quot; + cameraInfo.orientation);
+
+        camera.setDisplayOrientation(result);
+    }
+
+    public void releaseCamera() {
+        if (mCamera != null) {
+            mCamera.setPreviewCallback(null);
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+        }
+    }
+
+}
+```
+</pre>
+</div>
+<div created="20170813030612872" creator="dimpurr" modified="20180703134956527" modifier="dimpurr" tags="C++ [[C++ 笔记]]" title="C++ 笔记 - STL 标准模板库">
+<pre>!!! 子条目索引
+
+&lt;&lt;list-links &quot;[tag[C++ 笔记 - STL 标准模板库]sort[title]]&quot;&gt;&gt;
+
+!!! 简介
+
+STL（Standard Template Library），即标准模板库，是一个具有工业强度的，高效的C++程序库。它被容纳于C++标准程序库（C++ Standard Library）中，是ANSI/ISO C++标准中最新的也是极具革命性的一部分。该库包含了诸多在计算机科学领域里所常用的基本数据结构和基本算法。为广大C++程序员们提供了一个可扩展的应用框架，高度体现了软件的可复用性。
+
+!!! STL 的六大组件
+
+* ''容器 (Container)'' 是一种数据结构，如 `list`，`vector`，和 `deques` ，以模板类的方法提供。为了访问容器中的数据，可以使用由容器类输出的迭代器；
+* ''迭代器 (Iterator)'' 提供了访问容器中对象的方法。例如，可以使用一对迭代器指定 `list` 或 `vector` 中的一定范围的对象。迭代器就如同一个指针。事实上，C++ 的指针也是一种迭代器。但是，迭代器也可以是那些定义了 `operator*()` 以及其他类似于指针的操作符地方法的类对象；
+* ''算法 (Algorithm)'' 是用来操作容器中的数据的模板函数。例如，STL 用 `sort()` 来对一个 `vector` 中的数据进行排序，用 `find()` 来搜索一个 `list` 中的对象，函数本身与他们操作的数据的结构和类型无关，因此他们可以在从简单数组到高度复杂容器的任何数据结构上使用；
+* ''仿函数 (Function object)''，''仿函数 (functor'') 又称之为''函数对象 (function object)''，其实就是重载了()操作符的 `struct`，没有什么特别的地方
+* ''迭代适配器 (Adaptor)''
+* ''空间配制器 (allocator)'' 其中主要工作包括两部分 1.对象的创建与销毁 2.内存的获取与释放
+
+!! STL 容器
+
+!!! 序列式容器 (Sequence containers)
+
+每个元素都有固定位置，取决于插入时机和地点，和元素值无关。
+
+* `Vectors`：将元素置于一个''动态数组''中加以管理，可以随机存取元素（用索引直接存取），''数组尾部添加或移除元素非常快速''。但是在中部或头部安插元素比较费时
+* `Deques`：是 double-ended queue 的缩写，可以随机存取元素（用索引直接存取），''数组头部和尾部添加或移除元素都非常快速''。但是在中部或头部安插元素比较费时
+* `Lists`：双向链表，不提供随机存取（按顺序走到需存取的元素，O(n)），''在任何位置上执行插入或删除动作都非常迅速''，内部只需调整一下指针
+
+!!! 关联式容器 (Associated containers)
+
+元素位置取决于特定的排序准则，和插入顺序无关。
+
+* `Sets/Multisets` ：''内部的元素依据其值自动排序''，`Set` 内的相同数值的元素只能出现一次，`Multisets` 内可包含多个数值相同的元素，内部由二叉树实现（实际上基于红黑树 (RB-tree) 实现），便于查找
+* `Maps/Multimaps` ：`Map` 的元素是''成对的键值/实值''，内部的元素依据其值自动排序，`Map` 内的相同数值的元素只能出现一次，`Multimaps` 内可包含多个数值相同的元素，内部由二叉树实现（实际上基于红黑树 (RB-tree) 实现），便于查找
+* 另外有其他容器 `hash_map`, `hash_set`, `hash_multiset`, `hash_multimap`
+
+容器的比较：
+
+|!|!`Vector`|!`Deque`|!`List`|!`Set`|!`MultiSet`|!`Map`|!`MultiMap`|
+|!内部结构|dynamic array|array of arrays|double linked list|binary tree|binary tree|binary tree|binary tree|
+|!随机存取|Yes|Yes|No|No|No|Yes (key)|No|
+|!搜索速度|慢|慢|很慢|快|快|快|快|
+|!快速插入移除|尾部|首尾|任何位置|--|--|--|--|
+
+ 
+
+!! STL 迭代器 
+
+Iterator（迭代器）模式又称 Cursor（游标）模式，运用该模式，使得我们可以''在不知道对象内部表示的情况下，按照一定顺序（由 iterator 提供的方法）访问聚合对象中的各个元素''。
+
+迭代器能够让迭代器与算法不干扰的相互发展，最后又能无间隙的粘合起来，重载了*，＋＋，＝＝，！＝，＝运算符，用以操作复杂的数据结构。''容器提供迭代器，算法使用迭代器''。
+
+常见的一些迭代器类型：`iterator`、`const_iterator`、`reverse_iterator` 和 `const_reverse_iterator`
+
+!!! 迭代器的操作
+
+每种迭代器均可进行包括表中前一种迭代器可进行的操作。
+
+|!迭代器操作|!说明|
+|!所有迭代器|&lt;|
+|p++|后置自增迭代器|
+|++p|前置自增迭代器|
+|!输入迭代器|&lt;|
+|*p|复引用迭代器，作为右值|
+|p=p1|将一个迭代器赋给另一个迭代器|
+|p==p1|比较迭代器的相等性|
+|p!=p1|比较迭代器的不等性|
+|!输出迭代器|&lt;|
+|*p|复引用迭代器，作为左值|
+|p=p1|将一个迭代器赋给另一个迭代器|
+|!正向迭代器|&lt;|
+|提供输入输出迭代器的所有功能|&lt;|
+|!双向迭代器|&lt;|
+|`--p`|前置自减迭代器|
+|`p--`|后置自减迭代器|
+|!随机迭代器|&lt;|
+|p+=i|将迭代器递增i位|
+|p-=i|将迭代器递减i位|
+|p+i|在p位加i位后的迭代器|
+|p-i|在p位减i位后的迭代器|
+|p[i]|返回p位元素偏离i位的元素引用|
+|p&lt;p1|如果迭代器p的位置在p1前，返回true，否则返回false|
+|p&lt;=p1|p的位置在p1的前面或同一位置时返回true，否则返回false|
+|p&gt;p1|如果迭代器p的位置在p1后，返回true，否则返回false|
+|p&gt;=p1p|的位置在p1的后面或同一位置时返回true，否则返回false|
+
+!!! 容器支持的迭代器
+
+只有顺序容器和关联容器支持迭代器遍历，各容器支持的迭代器的类别如下：
+
+|!容器|!支持的迭代器类别|!说明|
+|vector|随机访问|一种随机访问的数组类型，提供了对数组元素进行快速随机访问以及在序列尾部进行快速的插入和删除操作的功能。可以再需要的时候修改其自身的大小|
+|deque|随机访问|一种随机访问的数组类型，提供了序列两端快速进行插入和删除操作的功能。可以再需要的时候修改其自身的大小|
+|list|双向|一种不支持随机访问的数组类型，插入和删除所花费的时间是固定的，与位置无关|
+|set|双向|一种随机存取的容器，其关键字和数据元素是同一个值。所有元素都必须具有惟一值|
+|multiset|双向|一种随机存取的容器，其关键字和数据元素是同一个值。可以包含重复的元素|
+|map|双向|一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个特定的关键字只能与一个元素关联|
+|multimap|双向|一种包含成对数值的容器，一个值是实际数据值，另一个是用来寻找数据的关键字。一个关键字可以与多个数据元素关联|
+|stack|不支持|适配器容器类型，用vector，deque或list对象创建了一个先进后出容器|
+|queue|不支持|适配器容器类型，用deque或list对象创建了一个先进先出容器|
+|priority_queue|不支持|适配器容器类型，用vector或deque对象创建了一个排序队列|
+
+!! STL 适配器
+
+STL提供了三个容器适配器：`queue`、`priority_queue`、`stack`。这些适配器都是包装了`vector`、`list`、`deque`中某个顺序容器的包装器。注意：''适配器没有提供迭代器，也不能同时插入或删除多个元素''。</pre>
+</div>
+<div created="20210204062201996" modified="20210205060803543" tags="git Home" title="Git常用命令">
+<pre>!!!Git原理
+[img[https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=613996794,3695167693&amp;fm=26&amp;gp=0.jpg]]
+
+* Workspace：工作区
+* Index / Stage：暂存区
+* Repository：仓库区（或本地仓库）
+* Remote：远程仓库
+
+!!!查看远程仓库地址
+```bash
+git remote -v
+```
+
+!!!回退代码
+```bash
+默认是mixed模式
+git reset HEAD^
+git reset HEAD^^
+
+hard模式,直接清空工作区
+git reset --hard HEAD^
+```
+
+
+</pre>
+</div>
+<div created="20210205060456896" modified="20210205060548157" tags="TableOfContents" title="Home">
+<pre>aaa</pre>
+</div>
+<div created="20210204100838879" modified="20210204101033739" tags="nodejs" title="NodeJs配置html服务器">
+<pre>!!! 安装node
+http://nodejs.cn/download/
+
+!!! 安装express
+```bash
+npm install express -g
+```</pre>
 </div>
 <div caption="目录" created="20210205060045175" list-after="$:/core/ui/SideBar/Open" modified="20210205060406660" tags="$:/tags/SideBar" title="TableOfContents">
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt; 
