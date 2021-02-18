@@ -749,6 +749,8 @@ Error message and password prompt
 
 <li>Home</li>
 
+<li>Linux Socket网络编程</li>
+
 <li>NodeJs配置html服务器</li>
 
 <li>TableOfContents</li>
@@ -14675,8 +14677,8 @@ Error message and password prompt
 <div created="20210204035139676" modified="20210212113646203" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210204035851987" modified="20210209020741396" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20210204035851987" modified="20210218131910786" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20210204035527148" modified="20210209103302226" title="$:/state/tab--1418380610">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
@@ -14714,7 +14716,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210217142806834" list="Epoll理解 Git常用命令" modified="20210217142806834" title="$:/StoryList">
+<div list="[[Linux Socket网络编程]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210204031306536" modified="20210204031309206" title="$:/theme">
@@ -15862,7 +15864,6 @@ STL提供了三个容器适配器：`queue`、`priority_queue`、`stack`。这�
 </div>
 <div created="20210216150429835" modified="20210217142857027" tags="" title="Epoll理解">
 <pre>
-
 bilibi视频
 https://www.bilibili.com/video/BV1sK411u7tK?from=search&amp;seid=13828779101640512194
 
@@ -15973,6 +15974,93 @@ git reset --hard HEAD^
 </div>
 <div created="20210205060456896" modified="20210205060548157" tags="TableOfContents" title="Home">
 <pre>aaa</pre>
+</div>
+<div created="20210218131843380" modified="20210218143945921" tags="" title="Linux Socket网络编程">
+<pre>```c
+//
+// Created by zhe on 2021/2/18.
+//
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+#include &lt;zconf.h&gt;
+
+int main() {
+
+    /**
+     * socket()用于创建一个socket描述符（socket descriptor），它唯一标识一个socket
+     * domain:协议域 (AF_INET IPv4协议)
+     * type:套接字的类型  SOCK_STREAM 字节流套接字（常用）
+     * protocol：协议类型的常量或设置为0，以选择给定的family和type组合的系统默认值
+     * 返回套接字描述符
+     */
+    //int socket(int domain, int type, int protocol);
+
+
+    /**
+     * 把一个地址族中的特定地址赋给socket
+     * sockfd: socket fd
+     * *addr: 指向要绑定给sockfd的协议地址
+     * addrlen: 对应的是地址的长度
+     */
+    //int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+    int listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+    struct sockaddr_in sockaddr;
+    memset(&amp;sockaddr, 0, sizeof(sockaddr));
+    sockaddr.sin_family = AF_INET;
+    sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    sockaddr.sin_port = htons(6666);
+
+
+    if (bind(listen_fd, (struct sockaddr *)&amp;sockaddr, sizeof(sockaddr)) == -1) {
+        printf(&quot;bind error\n&quot;);
+        return 0;
+    }
+
+    /**
+     * 成功返回0,失败返回-1
+     * 本函数的第二个参数规定了内核要为该套接字排队的最大连接个数
+     */
+    listen(listen_fd, 1024);
+
+    struct sockaddr_in client_addr;
+    socklen_t length = sizeof(client_addr);
+
+    printf(&quot; listen port %d \n&quot;,6666);
+
+    //如果accept成功，那么其返回值是由内核自动生成的一个全新描述符，代表与所返回客户的TCP连接
+    int client_fd = accept(listen_fd, (struct sockaddr *)&amp;client_addr, &amp;length);
+    if (client_fd &lt; 0) {
+        perror(&quot;accept&quot;);
+        return 0;
+    }
+
+    printf(&quot;a client connected&quot;);
+
+    char buff[1024];
+    while (true) {
+        memset(&amp;buff, 0, sizeof(buff));
+
+        int len = recv(client_fd, buff, sizeof(buff), 0);
+        printf(&quot;receive from client: %s&quot;, buff);
+
+        if (strcmp(buff, &quot;exit\n&quot;) == 0) {
+            break;
+        }
+
+        strcat(buff, &quot;--from server&quot;);
+        send(client_fd, buff, strlen(buff), 0);
+    }
+
+    close(listen_fd);
+    close(client_fd);
+
+    return 0;
+}
+```</pre>
 </div>
 <div created="20210204100838879" modified="20210204101033739" tags="nodejs" title="NodeJs配置html服务器">
 <pre>!!! 安装node
